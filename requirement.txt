@@ -1,6 +1,7 @@
+streamlit
 langchain
-langchain-community
-langchain-text-splitters
 langchain-groq
-youtube-transcript-api
+langchain-core
+langchain-text-splitters
 python-dotenv
+youtube-transcript-api
