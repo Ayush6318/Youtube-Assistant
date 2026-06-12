@@ -1,6 +1,6 @@
 from youtube_transcript_api import YouTubeTranscriptApi
-
 from urllib.parse import urlparse, parse_qs
+
 
 def get_video_id(url):
     parsed_url = urlparse(url)
@@ -16,18 +16,35 @@ def get_video_id(url):
 
     raise ValueError("Invalid YouTube URL")
 
+
 def get_transcript(video_id):
 
-    try:
-        transcript = YouTubeTranscriptApi().fetch(video_id,languages=['en','hi'])
+    languages_to_try = [
+        ['en'],
+        ['hi'],
+        ['en', 'hi']
+    ]
 
-        text = " ".join(
-            [chunk.text for chunk in transcript]
-        )
+    last_error = None
 
-        return text
+    for langs in languages_to_try:
+        try:
+            transcript = YouTubeTranscriptApi.get_transcript(
+                video_id,
+                languages=langs
+            )
 
-    except Exception as e:
-        raise Exception(
-            f"Transcript could not be retrieved.\n{str(e)}"
-        )
+            text = " ".join(
+                chunk["text"]
+                for chunk in transcript
+            )
+
+            if text.strip():
+                return text
+
+        except Exception as e:
+            last_error = e
+
+    raise Exception(
+        f"Transcript unavailable for this video.\n{str(last_error)}"
+    )

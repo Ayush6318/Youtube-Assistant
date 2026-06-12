@@ -87,6 +87,14 @@ with st.sidebar:
                 with st.spinner("Fetching transcript & creating vectors..."):
                     video_id = get_video_id(url)
                     transcript = get_transcript(video_id)
+
+                    if not transcript.strip():
+                      raise Exception(
+                      "No transcript found for this video."
+                       )
+
+
+
                     docs = split_text(transcript)
                     vector_db = create_vector_store(docs, embeddings)
                     
@@ -117,7 +125,18 @@ with st.sidebar:
                     st.success("Context loaded successfully!")
                     st.rerun()
             except Exception as e:
-                st.error(f"Error loading source material: {str(e)}")
+                st.error( """
+        Unable to load transcript.
+
+        Possible reasons:
+        • Video has no captions
+        • Captions are disabled
+        • YouTube temporarily blocked requests
+        • The video is age-restricted/private
+
+        Try another video.
+        """)
+                st.exception(e)
 
     if st.session_state.video_loaded:
         st.divider()
