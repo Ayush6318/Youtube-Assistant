@@ -2,7 +2,7 @@
 
 > An advanced AI-powered educational platform that converts any YouTube video link into a fully interactive, end-to-end learning workstation. Powered by **Gemini 2.5 Flash**, the system parses video transcripts to instantly generate comprehensive executive summaries, custom study guides, interactive flashcards, responsive testing engines, and contextual chat interfaces.
 
-📺 **Project Presentation:** [Watch Local Walkthrough Video](YOUR_LOOM_OR_YOUTUBE_LINK_HERE)
+📺 **Project Presentation:** [Watch Local Walkthrough Video](https://www.loom.com/share/92714be460ef4e659c0f9572a0a5ff08)
 
 ---
 
