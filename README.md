@@ -58,3 +58,8 @@ The platform is engineered into 5 highly targeted learning modules, accessible v
 ```bash
 >> git clone [https://github.com/Ayush6318/YouTube-Study-Studio.git](https://github.com/Ayush6318/YouTube-Study-Studio.git)
 >> cd YouTube-Study-Studio
+>> python3 -m venv venv
+>> source venv/bin/activate  # On Windows use: venv\Scripts\activate
+>> pip install -r requirements.txt
+>> GOOGLE_API_KEY=your_gemini_api_key_here
+>> streamlit run app.py
